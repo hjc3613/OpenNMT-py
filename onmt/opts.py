@@ -195,21 +195,21 @@ def preprocess_opts(parser):
               help="Type of the source input. "
                    "Options are [text|img|audio|vec].")
 
-    group.add('--train_src', '-train_src', required=True, nargs='+',
+    group.add('--train_src', '-train_src', required=False, default=['data_toy\\toy-ende\\src-train.txt'],nargs='+',
               help="Path(s) to the training source data")
-    group.add('--train_tgt', '-train_tgt', required=True, nargs='+',
+    group.add('--train_tgt', '-train_tgt', required=False, default=['data_toy\\toy-ende\\tgt-train.txt '],nargs='+',
               help="Path(s) to the training target data")
     group.add('--train_ids', '-train_ids', nargs='+', default=[None],
               help="ids to name training shards, used for corpus weighting")
     group.add('--valid_src', '-valid_src',
-              help="Path to the validation source data")
+              help="Path to the validation source data", default='data_toy\\toy-ende\\src-val.txt ')
     group.add('--valid_tgt', '-valid_tgt',
-              help="Path to the validation target data")
+              help="Path to the validation target data", default='data_toy\\toy-ende\\tgt-val.txt ')
 
     group.add('--src_dir', '-src_dir', default="",
               help="Source directory for image or audio files.")
 
-    group.add('--save_data', '-save_data', required=True,
+    group.add('--save_data', '-save_data', required=False, default='demo',
               help="Output file for the prepared data")
 
     group.add('--max_shard_size', '-max_shard_size', type=int, default=0,
@@ -224,7 +224,7 @@ def preprocess_opts(parser):
                    "shard_size>0 means segment dataset into multiple shards, "
                    "each shard has shard_size samples")
 
-    group.add('--overwrite', '-overwrite', action="store_true",
+    group.add('--overwrite', '-overwrite', required=False,default=True,
               help="Overwrite existing shards if any.")
 
     # Dictionary options, for text corpus
