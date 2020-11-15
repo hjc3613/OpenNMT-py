@@ -215,7 +215,7 @@ def preprocess_opts(parser):
     group.add('--max_shard_size', '-max_shard_size', type=int, default=0,
               help="""Deprecated use shard_size instead""")
 
-    group.add('--shard_size', '-shard_size', type=int, default=1000000,
+    group.add('--shard_size', '-shard_size', type=int, default=1000,
               help="Divide src_corpus and tgt_corpus into "
                    "smaller multiple src_copus and tgt corpus files, then "
                    "build shards, each shard will have "
@@ -315,7 +315,7 @@ def train_opts(parser):
     """ Training and saving options """
 
     group = parser.add_argument_group('General')
-    group.add('--data', '-data', required=True,
+    group.add('--data', '-data', required=False, default='data_toy\\demo',
               help='Path prefix to the ".train.pt" and '
                    '".valid.pt" file path from preprocess.py')
 
@@ -325,7 +325,7 @@ def train_opts(parser):
               default=[1], help="""Weights of different corpora,
               should follow the same order as in -data_ids.""")
 
-    group.add('--save_model', '-save_model', default='model',
+    group.add('--save_model', '-save_model', default='demo-model',
               help="Model filename (the model will be saved as "
                    "<save_model>_N.pt where N is the number "
                    "of steps")
@@ -612,7 +612,7 @@ def translate_opts(parser):
     # Options most relevant to summarization.
     group.add('--dynamic_dict', '-dynamic_dict', action='store_true',
               help="Create dynamic dictionaries")
-    group.add('--share_vocab', '-share_vocab', action='store_true',
+    group.add('--share_vocab', '-share_vocab', default=True,
               help="Share source and target vocabulary")
 
     group = parser.add_argument_group('Random Sampling')

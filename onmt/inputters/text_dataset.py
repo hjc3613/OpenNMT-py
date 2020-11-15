@@ -192,3 +192,4 @@ def text_fields(**kwargs):
     assert fields_[0][0] == base_name  # sanity check
     field = TextMultiField(fields_[0][0], fields_[0][1], fields_[1:])
     return field
+
