@@ -195,27 +195,27 @@ def preprocess_opts(parser):
               help="Type of the source input. "
                    "Options are [text|img|audio|vec].")
 
-    group.add('--train_src', '-train_src', required=False, default=['data_toy\\toy-ende\\src-train.txt'],nargs='+',
+    group.add('--train_src', '-train_src', required=False, default=['data_lab\\lab_src.txt'],nargs='+',
               help="Path(s) to the training source data")
-    group.add('--train_tgt', '-train_tgt', required=False, default=['data_toy\\toy-ende\\tgt-train.txt '],nargs='+',
+    group.add('--train_tgt', '-train_tgt', required=False, default=['data_lab\\lab_tgt.txt'],nargs='+',
               help="Path(s) to the training target data")
     group.add('--train_ids', '-train_ids', nargs='+', default=[None],
               help="ids to name training shards, used for corpus weighting")
     group.add('--valid_src', '-valid_src',
-              help="Path to the validation source data", default='data_toy\\toy-ende\\src-val.txt ')
+              help="Path to the validation source data", default='data_lab\\val_src.txt')
     group.add('--valid_tgt', '-valid_tgt',
-              help="Path to the validation target data", default='data_toy\\toy-ende\\tgt-val.txt ')
+              help="Path to the validation target data", default='data_lab\\val_tgt.txt')
 
     group.add('--src_dir', '-src_dir', default="",
               help="Source directory for image or audio files.")
 
-    group.add('--save_data', '-save_data', required=False, default='demo',
+    group.add('--save_data', '-save_data', required=False, default='data_lab\\demo',
               help="Output file for the prepared data")
 
     group.add('--max_shard_size', '-max_shard_size', type=int, default=0,
               help="""Deprecated use shard_size instead""")
 
-    group.add('--shard_size', '-shard_size', type=int, default=1000,
+    group.add('--shard_size', '-shard_size', type=int, default=10000,
               help="Divide src_corpus and tgt_corpus into "
                    "smaller multiple src_copus and tgt corpus files, then "
                    "build shards, each shard will have "
@@ -261,12 +261,12 @@ def preprocess_opts(parser):
 
     # Truncation options, for text corpus
     group = parser.add_argument_group('Pruning')
-    group.add('--src_seq_length', '-src_seq_length', type=int, default=50,
+    group.add('--src_seq_length', '-src_seq_length', type=int, default=15,
               help="Maximum source sequence length")
     group.add('--src_seq_length_trunc', '-src_seq_length_trunc',
               type=int, default=None,
               help="Truncate source sequence length.")
-    group.add('--tgt_seq_length', '-tgt_seq_length', type=int, default=50,
+    group.add('--tgt_seq_length', '-tgt_seq_length', type=int, default=15,
               help="Maximum target sequence length to keep.")
     group.add('--tgt_seq_length_trunc', '-tgt_seq_length_trunc',
               type=int, default=None,

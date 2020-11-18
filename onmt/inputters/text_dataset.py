@@ -61,7 +61,8 @@ def _feature_tokenize(
         List[str] of tokens.
     """
 
-    tokens = string.split(tok_delim)
+    #tokens = string.split(tok_delim)
+    tokens = list(string)
     if truncate is not None:
         tokens = tokens[:truncate]
     if feat_delim is not None:
