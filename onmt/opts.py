@@ -315,7 +315,7 @@ def train_opts(parser):
     """ Training and saving options """
 
     group = parser.add_argument_group('General')
-    group.add('--data', '-data', required=False, default='demo',
+    group.add('--data', '-data', required=False, default='data_lab\\demo',
               help='Path prefix to the ".train.pt" and '
                    '".valid.pt" file path from preprocess.py')
 
