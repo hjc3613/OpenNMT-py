@@ -34,7 +34,7 @@ def model_opts(parser):
               action='store_true',
               help="Use a shared weight matrix for the input and "
                    "output word  embeddings in the decoder.")
-    group.add('--share_embeddings', '-share_embeddings', action='store_true',
+    group.add('--share_embeddings', '-share_embeddings', default=True,
               help="Share the word embeddings between encoder "
                    "and decoder. Need to use shared dictionary for this "
                    "option.")
@@ -256,7 +256,7 @@ def preprocess_opts(parser):
 
     group.add('--dynamic_dict', '-dynamic_dict', action='store_true',
               help="Create dynamic dictionaries")
-    group.add('--share_vocab', '-share_vocab', action='store_true',
+    group.add('--share_vocab', '-share_vocab', default=True,
               help="Share source and target vocabulary")
 
     # Truncation options, for text corpus
@@ -315,7 +315,7 @@ def train_opts(parser):
     """ Training and saving options """
 
     group = parser.add_argument_group('General')
-    group.add('--data', '-data', required=False, default='data_toy\\demo',
+    group.add('--data', '-data', required=False, default='demo',
               help='Path prefix to the ".train.pt" and '
                    '".valid.pt" file path from preprocess.py')
 
